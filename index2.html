@@ -1,0 +1,65 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <link rel="stylesheet" href="styles.css"> -->
+        <title>Animals</title>
+    </head>
+<style>
+    * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .center {
+  border: 5px solid;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
+}
+.draggable {
+    width: 10vh;
+    height: 10vh;
+    background-color: lightblue;
+    position: absolute;
+    border: 1px solid red;
+  }
+  
+  .dropzone {
+    width: 25vh;
+    height: 25vh;
+    border: 2px solid black;
+    float: left;
+    display: flexbox;
+    margin: 10px;
+
+  }
+
+</style>
+    <body>
+        <h1>Arrastrar y soltar</h1>
+<section class="center">
+  <div id="draggable1" draggable="true" class="draggable">Burro</div>
+  <br>
+  <div id="draggable2" draggable="true"class="draggable">Pato</div>
+  <br>
+  <br>
+  <div id="draggable3" draggable="true"class="draggable">Elefante</div>
+  <br>
+  <div id="draggable4" draggable="true"class="draggable">Cisne</div>
+  <br>
+  <div id="draggable5" draggable="true" class="draggable">Jirafa</div>
+  <br>
+</section>
+  <section class="drop">
+  <div id="dropzone1" class="dropzone">w</div>
+  <div id="dropzone2" class="dropzone">w1</div>
+  <div id="dropzone3" class="dropzone">22</div>
+  <div id="dropzone4" class="dropzone">12</div>
+  <div id="dropzone5" class="dropzone">ww</div>
+</section>
+  <script src="script.js"></script>
+    </body>
+    </html>

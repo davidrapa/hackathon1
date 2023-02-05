@@ -1,65 +1,178 @@
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!-- <link rel="stylesheet" href="styles.css"> -->
-        <title>Animals</title>
-    </head>
-<style>
-    * {
+<html>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elmer Game</title>
+  <head>
+    <style>
+* {
     margin: 0;
     padding: 0;
   }
 
-  .center {
-  border: 5px solid;
-  margin: auto;
-  width: 50%;
-  padding: 10px;
+      #container {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        background-image: url("https://preview.free3d.com/img/2016/01/2201639781136336226/epi2frqw.jpg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+
+      #movable {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("https://upload.wikimedia.org/wikipedia/en/c/c0/ElmerFudd.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+#resetButton {
+  align-items: center;
 }
-.draggable {
-    width: 10vh;
-    height: 10vh;
-    background-color: lightblue;
-    position: absolute;
-    border: 1px solid red;
-  }
-  
-  .dropzone {
-    width: 25vh;
-    height: 25vh;
-    border: 2px solid black;
-    float: left;
-    display: flexbox;
-    margin: 10px;
+      .automoving {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+      }
 
-  }
+      .duck {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/f/f4/Daffy_Duck.svg/1200px-Daffy_Duck.svg.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .pig {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("https://static.wikia.nocookie.net/yunas-princess-adventure/images/e/e4/Party_Horse_42699.png/revision/latest/scale-to-width-down/360?cb=20180721183438");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
 
-</style>
-    <body>
-        <h1>Arrastrar y soltar</h1>
-<section class="center">
-  <div id="draggable1" draggable="true" class="draggable">Burro</div>
-  <br>
-  <div id="draggable2" draggable="true"class="draggable">Pato</div>
-  <br>
-  <br>
-  <div id="draggable3" draggable="true"class="draggable">Elefante</div>
-  <br>
-  <div id="draggable4" draggable="true"class="draggable">Cisne</div>
-  <br>
-  <div id="draggable5" draggable="true" class="draggable">Jirafa</div>
-  <br>
+      .horse {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("https://chuckjones.com/storage/2020/11/porky-pig-05.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .rabbit {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("https://upload.wikimedia.org/wikipedia/en/thumb/1/17/Bugs_Bunny.svg/1200px-Bugs_Bunny.svg.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+      .bull {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("https://static.wikia.nocookie.net/looneytunes/images/0/0e/Toro_the_Bull_in_LTWOM.png/revision/latest/scale-to-width-down/250?cb=20220830045212");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+
+      .camel {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        background-image: url("https://image.spreadshirtmedia.com/image-server/v1/designs/1041946996,width=178,height=178.png");
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Atrapa a los animales Elmer!</h1>
+    <button id="resetButton">Reset</button>
+    <section>
+    <div id="container">
+      <div id="movable"></div>
+      <div class="automoving duck"></div>
+      <div class="automoving pig"></div>
+      <div class="automoving horse"></div>
+      <div class="automoving rabbit"></div>
+      <div class="automoving bull"></div>
+      <div class="automoving camel"></div>
+    </div>
+
 </section>
-  <section class="drop">
-  <div id="dropzone1" class="dropzone">w</div>
-  <div id="dropzone2" class="dropzone">w1</div>
-  <div id="dropzone3" class="dropzone">22</div>
-  <div id="dropzone4" class="dropzone">12</div>
-  <div id="dropzone5" class="dropzone">ww</div>
-</section>
-  <script src="script.js"></script>
-    </body>
-    </html>
+
+  </body>
+  <script>
+document.addEventListener("DOMContentLoaded", function() {
+  const container = document.getElementById("container");
+  const movable = document.getElementById("movable");
+  const automovings = document.getElementsByClassName("automoving");
+  window.remaining = Array.from(automovings).filter(automoving => automoving.style.display !== "none");
+
+  let left = 0;
+  let top = 0;
+
+  //speed
+  Array.from(automovings).forEach(function(automoving) {
+    let xSpeed = Math.random() * 20;
+    let ySpeed = Math.random() * 15;
+
+    setInterval(function() {
+      let left = parseInt(automoving.style.left) || 0;
+      let top = parseInt(automoving.style.top) || 0;
+
+      left += xSpeed;
+      top += ySpeed;
+
+      if (left + automoving.offsetWidth > container.offsetWidth || left < 0) {
+        xSpeed = -xSpeed;
+      }
+
+      if (top + automoving.offsetHeight > container.offsetHeight || top < 0) {
+        ySpeed = -ySpeed;
+      }
+
+      automoving.style.left = left + "px";
+      automoving.style.top = top + "px";
+    }, 100);
+  });
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "ArrowLeft") {
+      left -= 10;
+    } else if (event.key === "ArrowRight") {
+      left += 10;
+    } else if (event.key === "ArrowUp") {
+      top -= 10;
+    } else if (event.key === "ArrowDown") {
+      top += 10;
+    }
+
+    movable.style.left = left + "px";
+    movable.style.top = top + "px";
+
+    Array.from(automovings).forEach(function(automoving) {
+      if (!automoving.style.display || automoving.style.display === "block") {
+        if (
+          left + movable.offsetWidth > automoving.offsetLeft &&
+          automoving.offsetLeft + automoving.offsetWidth > left &&
+          top + movable.offsetHeight > automoving.offsetTop &&
+          automoving.offsetTop + automoving.offsetHeight > top
+        ) {
+          automoving.style.display = "none";
+        }
+      }
+    });
+  });
+});
+
+document.getElementById("resetButton").addEventListener("click", function() {
+  location.reload(); // this will reload the page and reset the game
+});
+
+  </script>
+</html>
