@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("container");
   const movable = document.getElementById("movable");
   const automovings = document.getElementsByClassName("automoving");
-  window.remaining = Array.from(automovings).filter(automoving => automoving.style.display !== "none");
+  // window.remaining = Array.from(automovings).filter(automoving => automoving.style.display !== "none");
 
   let left = 0;
   let top = 0;
@@ -155,6 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
     movable.style.left = left + "px";
     movable.style.top = top + "px";
 
+    //collision
     Array.from(automovings).forEach(function(automoving) {
       if (!automoving.style.display || automoving.style.display === "block") {
         if (
