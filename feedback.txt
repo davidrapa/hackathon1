@@ -1,0 +1,11 @@
+hello david this is the feedback for your hackaton. i liked the game was a fun one.
+Rememeber always to separate your css code an javascrypt in to a css file and js file so is
+gonna be more readable and easy to maintain.
+
+good implementation of the for each method. intervals and random for the movement 
+of the characters.
+
+good implementation of event listeners for the hunter movements
+and use of javascrypt to change the style of your elements.
+
+good

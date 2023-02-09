@@ -93,19 +93,20 @@
     <h1>Atrapa a los animales Elmer!</h1>
     <button id="resetButton">Reset</button>
     <section>
-    <div id="container">
-      <div id="movable"></div>
-      <div class="automoving duck"></div>
-      <div class="automoving pig"></div>
-      <div class="automoving horse"></div>
-      <div class="automoving rabbit"></div>
-      <div class="automoving bull"></div>
-      <div class="automoving camel"></div>
-    </div>
+      <!-- remember is important a good indentation of the elements to understand
+      wich of the elements is inside the other -->
+      <div id="container">
+        <div id="movable"></div>
+        <div class="automoving duck"></div>
+        <div class="automoving pig"></div>
+        <div class="automoving horse"></div>
+        <div class="automoving rabbit"></div>
+        <div class="automoving bull"></div>
+        <div class="automoving camel"></div>
+      </div>
 
-</section>
+    </section>
 
-  </body>
   <script>
 document.addEventListener("DOMContentLoaded", function() {
   const container = document.getElementById("container");
@@ -176,4 +177,6 @@ document.getElementById("resetButton").addEventListener("click", function() {
 });
 
   </script>
+  </body>
+
 </html>
